@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider_base_tools/provider_base_tools.dart';
 import 'package:shopping/common/widget/bottom_bar.dart';
 import 'package:shopping/constant/globle_variable.dart';
+import 'package:shopping/screens/Admin/screens/admin_screen.dart';
 import 'package:shopping/screens/auth/screens/auth_screen.dart';
 import 'package:shopping/providers/user_provider.dart';
 import 'package:shopping/router.dart';
@@ -51,7 +52,9 @@ class _MyAppState extends State<MyApp> {
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const BottomBar()
+          ? Provider.of<UserProvider>(context).user.type == 'user'
+              ? const BottomBar()
+              : const AdminScreen()
           : const AuthScreen(),
     );
   }
