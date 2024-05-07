@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider_base_tools/provider_base_tools.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping/common/utls/error_utils.dart';
+import 'package:shopping/common/widget/bottom_bar.dart';
 import 'package:shopping/providers/user_provider.dart';
-import 'package:shopping/screens/home/screen/home_screen.dart';
 
 import '../../../constant/error_handling.dart';
 import '../../../constant/globle_variable.dart';
@@ -82,7 +82,7 @@ class AuthSerice {
 
             // ignore: use_build_context_synchronously
             Navigator.pushNamedAndRemoveUntil(
-                context, HomeScreen.routeName, (route) => false);
+                context, BottomBar.routeNmae, (route) => false);
           });
     } catch (e) {
       // ignore: use_build_context_synchronously

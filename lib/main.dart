@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider_base_tools/provider_base_tools.dart';
+import 'package:shopping/common/widget/bottom_bar.dart';
 import 'package:shopping/constant/globle_variable.dart';
 import 'package:shopping/screens/auth/screens/auth_screen.dart';
 import 'package:shopping/providers/user_provider.dart';
 import 'package:shopping/router.dart';
 import 'package:shopping/screens/auth/services/auth_service.dart';
-import 'package:shopping/screens/home/screen/home_screen.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const HomeScreen()
+          ? const BottomBar()
           : const AuthScreen(),
     );
   }
