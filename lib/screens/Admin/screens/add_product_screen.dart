@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:shopping/common/utls/error_utils.dart';
 import 'package:shopping/common/widget/custom_button.dart';
 import 'package:shopping/common/widget/custom_textFiled.dart';
+import 'package:shopping/screens/Admin/services/admin_services.dart';
 
 import '../../../constant/globle_variable.dart';
 
@@ -23,7 +24,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
+  final AdminServices adminServices = AdminServices();
+
+  String category = 'Mobiles';
   List<File> images = [];
+  final _addproductformKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -34,8 +39,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
     super.dispose();
   }
 
-  String category = 'Mobiles';
-
   List<String> productName = [
     'Mobiles',
     'Essentials',
@@ -44,9 +47,21 @@ class _AddProductScreenState extends State<AddProductScreen> {
     'Fashion',
   ];
 
+  void sellProduct() {
+    if (_addproductformKey.currentState!.validate() && images.isNotEmpty) {}
+    adminServices.sellProduct(
+      context: context,
+      name: productnamecontroller.text,
+      description: descriptionController.text,
+      price: double.parse(priceController.text),
+      quantity: double.parse(quantityController.text),
+      category: category,
+      images: images,
+    );
+  }
+
   void selectImage() async {
     var res = await pickImages();
-
     setState(() {
       images = res;
     });
@@ -72,6 +87,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       ),
       body: SingleChildScrollView(
         child: Form(
+          key: _addproductformKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
@@ -163,7 +179,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   ),
                 ),
                 const Gap(20),
-                CustomButton(text: 'Sell', onTab: () {})
+                CustomButton(
+                  text: 'Sell',
+                  onTab: sellProduct,
+                ),
+                const Gap(20),
               ],
             ),
           ),
