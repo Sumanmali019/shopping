@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider_base_tools/provider_base_tools.dart';
 import 'package:shopping/constant/globle_variable.dart';
+import 'package:shopping/providers/user_provider.dart';
 import 'package:shopping/screens/home/screen/home_screen.dart';
 
+import '../../screens/Card/screen/card_screen.dart';
 import '../../screens/account/screen/account_screen.dart';
 
 class BottomBar extends StatefulWidget {
@@ -16,12 +19,11 @@ class _BottomBarState extends State<BottomBar> {
   int _page = 0;
   double bottombarwith = 42;
   double bottombarborderwith = 5;
+
   List<Widget> pages = [
     const HomeScreen(),
     const AccountScreen(),
-    const Center(
-      child: Text('Cart is Working '),
-    ),
+    const CartScreen(),
   ];
 
   void updatePage(int page) {
@@ -32,6 +34,7 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
+    final userCartLen = context.watch<UserProvider>().user.cart.length;
     return Scaffold(
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
@@ -93,10 +96,9 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                 ),
               ),
-              child: const Badge(
-                  // textColor: Colors.white,
-                  label: Text('2'),
-                  child: Icon(Icons.shopping_cart_outlined)),
+              child: Badge(
+                  label: Text(userCartLen.toString()),
+                  child: const Icon(Icons.shopping_cart_outlined)),
             ),
             label: '',
           ),

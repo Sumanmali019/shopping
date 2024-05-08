@@ -1,11 +1,13 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider_base_tools/provider_base_tools.dart';
 
 import '../../../common/widget/custom_button.dart';
+import '../../../common/widget/stars.dart';
 import '../../../constant/globle_variable.dart';
 import '../../../model/product.dart';
+import '../../../providers/user_provider.dart';
 import '../../search/screen/search_screen.dart';
 import '../services/product_detail.dart';
 
@@ -30,19 +32,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   void initState() {
     super.initState();
-  //   double totalRating = 0;
-  //   for (int i = 0; i < widget.product.rating!.length; i++) {
-  //     totalRating += widget.product.rating![i].rating;
-  //     if (widget.product.rating![i].userId ==
-  //         Provider.of<UserProvider>(context, listen: false).user.id) {
-  //       myRating = widget.product.rating![i].rating;
-  //     }
-  //   }
+    double totalRating = 0;
+    for (int i = 0; i < widget.product.rating!.length; i++) {
+      totalRating += widget.product.rating![i].rating;
+      if (widget.product.rating![i].userId ==
+          Provider.of<UserProvider>(context, listen: false).user.id) {
+        myRating = widget.product.rating![i].rating;
+      }
+    }
 
-  //   if (totalRating != 0) {
-  //     avgRating = totalRating / widget.product.rating!.length;
-  //   }
-  // }
+    if (totalRating != 0) {
+      avgRating = totalRating / widget.product.rating!.length;
+    }
   }
 
   void navigateToSearchScreen(String query) {
@@ -143,9 +144,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   Text(
                     widget.product.id!,
                   ),
-                  // Stars(
-                  //   rating: avgRating,
-                  // ),
+                  Stars(
+                    rating: avgRating,
+                  ),
                 ],
               ),
             ),
@@ -226,7 +227,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               child: CustomButton(
                 text: 'Add to Cart',
                 onTab: addToCart,
-                // color: const Color.fromRGBO(254, 216, 19, 1),
+                color: const Color.fromRGBO(254, 216, 19, 1),
               ),
             ),
             const SizedBox(height: 10),

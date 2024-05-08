@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shopping/constant/globle_variable.dart';
 import 'package:shopping/screens/account/widgets/app_bar_name.dart';
-import 'package:shopping/screens/account/widgets/order_list.dart';
 import 'package:shopping/screens/account/widgets/top_buttons.dart';
+
+import '../widgets/order_list.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -56,7 +57,7 @@ class AccountScreen extends StatelessWidget {
           Gap(10),
           TopButtons(),
           Gap(20),
-          Oders(),
+          Orders(),
         ],
       ),
     );

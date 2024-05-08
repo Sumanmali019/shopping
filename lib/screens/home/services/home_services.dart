@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -27,7 +29,6 @@ class HomeServices {
         'x-auth-token': userProvider.user.token,
       });
 
-      // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,
@@ -44,7 +45,6 @@ class HomeServices {
         },
       );
     } catch (e) {
-      // ignore: use_build_context_synchronously
       showSnackBar(context, e.toString());
     }
     return productList;
@@ -71,7 +71,6 @@ class HomeServices {
         'x-auth-token': userProvider.user.token,
       });
 
-      // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,
@@ -80,7 +79,6 @@ class HomeServices {
         },
       );
     } catch (e) {
-      // ignore: use_build_context_synchronously
       showSnackBar(context, e.toString());
     }
     return product;
