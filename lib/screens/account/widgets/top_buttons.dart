@@ -1,15 +1,13 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:shopping/screens/account/widgets/account_button.dart';
 
-class TopButtons extends StatefulWidget {
-  const TopButtons({super.key});
+import '../service/account_service.dart';
 
-  @override
-  State<TopButtons> createState() => _TopButtonsState();
-}
+class TopButtons extends StatelessWidget {
+  const TopButtons({Key? key}) : super(key: key);
 
-class _TopButtonsState extends State<TopButtons> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,7 +15,7 @@ class _TopButtonsState extends State<TopButtons> {
         Row(
           children: [
             AccountButton(
-              text: 'Your order',
+              text: 'Your Orders',
               onTab: () {},
             ),
             AccountButton(
@@ -26,19 +24,19 @@ class _TopButtonsState extends State<TopButtons> {
             ),
           ],
         ),
-        const Gap(10),
+        const SizedBox(height: 10),
         Row(
           children: [
             AccountButton(
               text: 'Log Out',
-              onTab: () {},
+              onTab: () => AccountServices().logOut(context),
             ),
             AccountButton(
               text: 'Your Wish List',
               onTab: () {},
             ),
           ],
-        )
+        ),
       ],
     );
   }
