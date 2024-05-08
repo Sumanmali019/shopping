@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/common/widget/bottom_bar.dart';
+import 'package:shopping/screens/Admin/screens/add_product_screen.dart';
 import 'package:shopping/screens/auth/screens/auth_screen.dart';
 import 'package:shopping/screens/home/screen/home_screen.dart';
 
@@ -22,12 +23,16 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const BottomBar(),
       );
+    case AddProductScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const AddProductScreen(),
+      );
     default:
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const Scaffold(
           body: Center(
-            
             child: Text('Screen does not exist!'),
           ),
         ),

@@ -7,7 +7,7 @@ import 'package:shopping/screens/home/widget/address_box.dart';
 import 'package:shopping/screens/home/widget/category.dart';
 
 import '../widget/crousal_image.dart';
-import '../widget/deal_od_day.dart';
+import '../widget/deal_of_day.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
