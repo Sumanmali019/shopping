@@ -7,6 +7,9 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        implementation "androidx.activity:activity:1.6.0-alpha05"
+
+   
     }
 }
 

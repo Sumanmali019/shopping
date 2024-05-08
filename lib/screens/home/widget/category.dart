@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/constant/globle_variable.dart';
+import 'package:shopping/screens/home/screen/category_details.dart';
 
-class CategoryList extends StatefulWidget {
-  const CategoryList({super.key});
+class TopCategories extends StatelessWidget {
+  const TopCategories({Key? key}) : super(key: key);
 
-  @override
-  State<CategoryList> createState() => _CategoryListState();
-}
+  void navigateToCategoryPage(BuildContext context, String category) {
+    Navigator.pushNamed(context, CategoryDealsScreen.routeName,
+        arguments: category);
+  }
 
-class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
-      child: SizedBox(
-        height: 60,
-        // color: Colors.white,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemExtent: 80,
-          itemCount: GlobalVariables.categoryImages.length,
-          itemBuilder: (context, index) {
-            return Column(
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        itemCount: GlobalVariables.categoryImages.length,
+        scrollDirection: Axis.horizontal,
+        itemExtent: 75,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () => navigateToCategoryPage(
+              context,
+              GlobalVariables.categoryImages[index]['title']!,
+            ),
+            child: Column(
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -43,9 +46,9 @@ class _CategoryListState extends State<CategoryList> {
                   ),
                 ),
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
